@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extension type="file" version="3.10" method="upgrade">
-    <name>Joomla 3 EOL Security Fixes</name>
-    <author>Tom van der Laan || TLWebdesign</author>
-    <creationDate>2025-01-07</creationDate>
-    <version>1.0.8</version>
-    <description><![CDATA[This plugin fixes all known vulnerabilities (as of the release of this plugin) in Joomla 3.10.12. After applying the fix it auto-uninstalls itself.]]>
-        </description>
+    <name>Joomla 3 EOL Security Fixes (2026 Community Update)</name>
+    <author>Tom van der Laan (Original) | Updated by N8Solutions</author>
+    <creationDate>2026-01-08</creationDate>
+    <copyright>Public Domain / GPL</copyright>
+    <license>GNU General Public License v2 or later</license>
+    <version>1.0.9</version>
+    <description><![CDATA[
+        <strong>Joomla 3 EOL Security Fixes</strong><br />
+        <em>Original Author: Tom van der Laan (TLWebdesign)</em><br />
+        <em>Updated & Maintained by: N8Solutions (2026)</em>
+        <hr />
+        This extension applies critical security backports to Joomla 3.10.12 sites to protect against vulnerabilities discovered after the official EOL. 
+        <br /><br />
+        <strong>2026 Update Notes:</strong><br />
+        - Added fix for Pagebreak XSS (CVE-2025-63083)<br />
+        - Added fix for Data URL Filtering (CVE-2025-63082)<br />
+        - Added fix for Media Manager RCE (CVE-2025-22213)<br />
+        - Added fix for Database SQL Injection (CVE-2025-25226)<br />
+        <br />
+        <em>This tool auto-uninstalls itself immediately after replacing the necessary core files.</em>
+    ]]></description>
     <scriptfile>script.php</scriptfile>
 </extension>
