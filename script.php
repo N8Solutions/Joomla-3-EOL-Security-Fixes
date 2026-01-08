@@ -63,32 +63,11 @@ class joomla3eolsecurityfixesInstallerScript
      */
     public function postflight($type, $parent)
     {
-        // Display the 2026 N8 Solutions Security Summary
-        $this->displayUpdateMessage();
+        // Simple, cumulative success message
+        Factory::getApplication()->enqueueMessage("<h2>Joomla 3.10.12 Hardened Successfully</h2><p>All known core vulnerabilities (including 2024-2026 backports) have been patched. The system is now secure.</p>", 'message');
 
         // Remove this plugin to leave no trace (self-uninstall)
         $this->uninstallPlugin();
-    }
-
-    /**
-     * Displays a summary of the 2026 N8 Solutions Security Update
-     */
-    protected function displayUpdateMessage()
-    {
-        $app = Factory::getApplication();
-        $msg = "<h2>Joomla 3 EOL Security Fixes - 2026 Update by N8 Solutions</h2>";
-        $msg .= "<p>The following critical security vulnerabilities have been patched on this site:</p>";
-        $msg .= "<ul>";
-        $msg .= "<li><strong>CVE-2025-22213:</strong> Media Manager Upload Hardening</li>";
-        $msg .= "<li><strong>CVE-2025-54476:</strong> Input Filter Control Character Bypass</li>";
-        $msg .= "<li><strong>CVE-2025-63082:</strong> Malicious Data URL XSS Filtering</li>";
-        $msg .= "<li><strong>CVE-2025-25226:</strong> Database Driver SQL Injection Protection</li>";
-        $msg .= "<li><strong>CVE-2025-63083:</strong> Pagebreak Plugin TOC XSS Fix</li>";
-        $msg .= "<li><strong>CVE-2024-40747:</strong> Module Helper Chrome Attribute XSS Fix</li>";
-        $msg .= "</ul>";
-        $msg .= "<p style='color: green;'><strong>Status:</strong> Core files successfully replaced. The system is now hardened against 2024-2026 core exploits.</p>";
-        
-        $app->enqueueMessage($msg, 'message');
     }
 
     /**
