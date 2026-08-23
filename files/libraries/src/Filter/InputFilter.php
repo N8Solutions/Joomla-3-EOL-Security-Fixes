@@ -694,7 +694,6 @@ class InputFilter extends BaseInputFilter
 
 										break;
 								}
-								}
 
 								if ($collide)
 								{
@@ -944,7 +943,7 @@ class InputFilter extends BaseInputFilter
 				$attrStartOffset = $spaceOffset + 1;
 
 				// Find position of equal and open quote
-				if (preg_match('#= *(\")[^\"]*(\")#', $tagNormalized, $matches, PREG_OFFSET_CAPTURE, $attrStartOffset))
+				if (preg_match('#= *(")[^"]*(")#', $tagNormalized, $matches, PREG_OFFSET_CAPTURE, $attrStartOffset))
 				{
 					$equalOffset     = $matches[0][1];
 					$quote1Offset    = $matches[1][1];
@@ -1164,7 +1163,7 @@ class InputFilter extends BaseInputFilter
 	 *
 	 * @param   string  $source  The source string.
 	 *
-	 * @return  string  Plaintext string
+	 * @return  string  Filtered string
 	 *
 	 * @since   3.5
 	 */
