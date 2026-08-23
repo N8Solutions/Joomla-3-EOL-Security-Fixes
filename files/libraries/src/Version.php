@@ -6,6 +6,7 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  * Updated May 2026 by TLWebdesign to include latest security backports.
  * Updated May 2026 by N8 Solutions to realign internal versioning (v1.1.2).
+ * Updated August 2026 by N8 Solutions to include Joomla 5.4.8 / 6.1.3 security backports.
  */
 
 namespace Joomla\CMS;
@@ -62,7 +63,7 @@ final class Version
      * @var    string
      * @since  3.8.0
      */
-    const EXTRA_VERSION = '2026-07-07-EOLfix';
+    const EXTRA_VERSION = '2026-08-24-EOLfix';
 
     /**
      * Release version.
