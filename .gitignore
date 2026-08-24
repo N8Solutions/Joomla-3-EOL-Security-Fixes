@@ -5,3 +5,7 @@ AGENTS.MD
 CLAUDE.MD
 .codex
 .claude
+
+# Local security testing workspace and generated test packages
+JoomlaSecurityTesting/
+joomla3eolsecurityfixes-*.zip
