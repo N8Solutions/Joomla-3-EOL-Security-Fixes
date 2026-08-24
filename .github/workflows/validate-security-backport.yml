@@ -1,0 +1,61 @@
+name: Validate Joomla 3 Security Backport
+
+on:
+  push:
+    branches:
+      - security/2026-08-joomla3-backports
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: PHP ${{ matrix.php }} validation
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['7.4', '8.0', '8.1']
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+
+      - name: Validate manifest XML
+        run: php -r 'new SimpleXMLElement(file_get_contents("joomla3eolsecurityfixes.xml"));'
+
+      - name: Lint installer script
+        run: php -d error_reporting='E_ALL & ~E_DEPRECATED' -l script.php
+
+      - name: Lint every patched PHP file
+        shell: bash
+        run: |
+          set -euo pipefail
+          failed=0
+          while IFS= read -r -d '' file; do
+            echo "Linting ${file}"
+            if ! php -d error_reporting='E_ALL & ~E_DEPRECATED' -l "${file}"; then
+              failed=1
+            fi
+          done < <(find files -type f -name '*.php' -print0)
+          exit "${failed}"
+
+      - name: Build test package
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          zip -r joomla3eolsecurityfixes-1.1.5-test.zip \
+            files \
+            joomla3eolsecurityfixes.xml \
+            script.php \
+            LICENSE \
+            -x '*.DS_Store'
+          unzip -t joomla3eolsecurityfixes-1.1.5-test.zip
